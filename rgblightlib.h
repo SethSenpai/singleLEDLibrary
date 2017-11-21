@@ -14,10 +14,11 @@ class llib
         llib(int pin);
         void breathSingle(int speed);
         void blinkSingle(int speed);
+        void blinkSingle(int timeHigh, int timeLow);
         void flickerSingle();
         void flickerSingle(int intMin, int intMax);
         void flickerSingle(int intMin, int intMax, int speed);
-        void patternSingle(String pattern, int speed);
+        //void patternSingle(int[] pattern, int speed);
         void update();
     private:
     //private variables and fucntion

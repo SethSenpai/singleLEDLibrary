@@ -13,13 +13,15 @@ void llib::update(){
 
 }
 
+/*
 //function for pattern based blinking
-void llib::patternSingle(String pattern, int speed){
+void llib::patternSingle(int[] pattern, int speed){
     if((milPattern + speed) < millis() ){
         milPattern = millis();
-
+        
     }
 }
+*/
 
 // simple breating function
 void llib::breathSingle(int speed){
@@ -74,4 +76,23 @@ void llib::blinkSingle(int speed){
             ioBlink = false;
         }
     }
+}
+
+//overload to allow for async blinking
+void llib::blinkSingle(int timeHigh, int timeLow){
+    if(ioBlink == false){
+        if( (milBlink + timeHigh) < millis()){
+            milBlink = millis();
+            digitalWrite(_pin,LOW);
+            ioBlink = true;
+        }
+    }
+    else{
+        if((milBlink + timeLow) < millis()){
+            milBlink = millis();
+            digitalWrite(_pin,HIGH);
+            ioBlink = false;
+        }
+    }
+    
 }

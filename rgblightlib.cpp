@@ -6,6 +6,8 @@
 llib::llib(int pin){
     //make sure to use pwm ports here
     pinMode(pin,OUTPUT);
+    digitalWrite(pin,LOW);
+    Serial.begin(9600);
     _pin = pin;
 }
 
@@ -13,20 +15,36 @@ void llib::update(){
 
 }
 
-/*
-//function for pattern based blinking
-void llib::patternSingle(int[] pattern, int speed){
-    if((milPattern + speed) < millis() ){
-        milPattern = millis();
+
+//function for pattern based blinking, first entry always turns the led high
+void llib::patternSingle(int pattern[], int lengthArray){
+    if(counter < lengthArray) {    
+        if((milOld + pattern[counter]) < millis() ){
+            milOld = millis();
+            if(odd == true){
+                digitalWrite(_pin, LOW);
+                odd = false;
+            }
+            else{
+                digitalWrite(_pin,HIGH);
+                odd = true;
+            }
+            Serial.println(counter);
+            counter++;
+            
+        }
         
     }
+    else{
+        counter = 0;
+    }
 }
-*/
+
 
 // simple breating function
 void llib::breathSingle(int speed){
-    if((milBreath + 1) < millis() ){
-        milBreath = millis();
+    if((milOld + 1) < millis() ){
+        milOld = millis();
         float it = 0;
         it = (exp(sin(millis()/(float)speed*PI)) - 0.36787944)*108.0;
         analogWrite(_pin, it);
@@ -35,8 +53,8 @@ void llib::breathSingle(int speed){
 
 // simple flickering function
 void llib::flickerSingle(int intMin, int intMax){
-    if((milFlicker + 100) < millis()){
-        milFlicker = millis();
+    if((milOld + 100) < millis()){
+        milOld = millis();
         float it = 0;
         it = random(intMin,intMax);
         analogWrite(_pin, it);
@@ -45,8 +63,8 @@ void llib::flickerSingle(int intMin, int intMax){
 
 //overload for instant use
 void llib::flickerSingle(){
-    if((milFlicker + 100) < millis()){
-        milFlicker = millis();
+    if((milOld + 100) < millis()){
+        milOld = millis();
         float it = 0;
         it = random(80,255);
         analogWrite(_pin, it);
@@ -55,8 +73,8 @@ void llib::flickerSingle(){
 
 //overload for speed controll
 void llib::flickerSingle(int intMin, int intMax, int speed){
-    if((milFlicker + speed) < millis()){
-        milFlicker = millis();
+    if((milOld + speed) < millis()){
+        milOld = millis();
         float it = 0;
         it = random(intMin,intMax);
         analogWrite(_pin, it);
@@ -65,8 +83,8 @@ void llib::flickerSingle(int intMin, int intMax, int speed){
 
 // simple blinking function
 void llib::blinkSingle(int speed){
-    if ( (milBlink + speed) < millis() ) {
-        milBlink = millis();
+    if ( (milOld + speed) < millis() ) {
+        milOld = millis();
         if(ioBlink == false){
             digitalWrite(_pin,HIGH);
             ioBlink = true;
@@ -81,15 +99,15 @@ void llib::blinkSingle(int speed){
 //overload to allow for async blinking
 void llib::blinkSingle(int timeHigh, int timeLow){
     if(ioBlink == false){
-        if( (milBlink + timeHigh) < millis()){
-            milBlink = millis();
+        if( (milOld + timeHigh) < millis()){
+            milOld = millis();
             digitalWrite(_pin,LOW);
             ioBlink = true;
         }
     }
     else{
-        if((milBlink + timeLow) < millis()){
-            milBlink = millis();
+        if((milOld + timeLow) < millis()){
+            milOld = millis();
             digitalWrite(_pin,HIGH);
             ioBlink = false;
         }

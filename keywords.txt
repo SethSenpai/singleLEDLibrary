@@ -3,3 +3,4 @@ blinkSingle	KEYWORD2
 update	KEYWORD2
 breathSingle	KEYWORD2
 flickerSingle	KEYWORD2
+patternSingle	KEYWORD2

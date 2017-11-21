@@ -1,0 +1,5 @@
+llib	KEYWORD1
+blinkSingle	KEYWORD2
+update	KEYWORD2
+breathSingle	KEYWORD2
+flickerSingle	KEYWORD2

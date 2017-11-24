@@ -44,9 +44,10 @@ class llib
         int _pin;
         unsigned long milOld;
         int runningFunction = 0;
-        int lengthArrayp;
         int speedp;
         int timep;
+        //int pPatt[];
+        int* arrP = 0;
 
         //variables for blinking
         bool ioBlink = false;

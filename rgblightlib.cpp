@@ -7,7 +7,6 @@ llib::llib(int pin){
     digitalWrite(pin,LOW);
     Serial.begin(9600);
     _pin = pin;
-
 }
 
 void llib::update(){
@@ -15,7 +14,7 @@ void llib::update(){
         case 0:
         break;
         case 1:
-            //patternSingle(pat,lengthArrayp);
+            patternSingle(arrP,speedp);
         break;
         case 2:
             breathSingle(speedp);
@@ -44,10 +43,16 @@ void llib::setRandomBlinkSingle(int minTime, int maxTime){
 }
 
 void llib::setPatternSingle(int pattern[], int lengthArray){
+    if (arrP != 0) {
+    delete [] arrP;
+    }
+    arrP = new int [lengthArray];   
+    
+    for(int i=0; i < lengthArray; i++){
+        arrP[i] = pattern[i];
+    }
+    speedp = lengthArray;
     runningFunction = 1;
-    //pat = pattern;
-    lengthArrayp = lengthArray;
-    //patternSingle(&pattern, &lengthArray);
 }
 
 void llib::setBreathSingle(int speed){

@@ -74,6 +74,8 @@ void loop() {
 This example shows the way the functions can be implemented *in loop*. We don't define the states of the LED's we just call the functions every time that tell the LED what to do in the next loop of the program.
 
 ## Function Reference
+
+#### Instantiate object
 ```cpp
 sllib nameoftheLED(int pinNumber);
 ```

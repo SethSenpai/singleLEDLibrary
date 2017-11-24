@@ -34,6 +34,7 @@ void llib::update(){
 
 void llib::setOffSingle(){
     runningFunction = 0;
+    digitalWrite(_pin, LOW);
 }
 
 void llib::setRandomBlinkSingle(int minTime, int maxTime){
@@ -57,7 +58,7 @@ void llib::setBreathSingle(int speed){
 void llib::setFlickerSingle(){
     runningFunction = 3;
 }
-
+  
 void llib::setBlinkSingle(int speed){
     runningFunction = 4;
     speedp = speed;

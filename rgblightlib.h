@@ -19,6 +19,7 @@ class llib
         //blink
         void blinkSingle(int speed);
         void blinkSingle(int timeHigh, int timeLow);
+        void blinkRandomSingle(int minTime, int maxTime);
         
         //flicker
         void flickerSingle();
@@ -32,15 +33,24 @@ class llib
         void update();
         void setPatternSingle(int pattern[], int lenghtarray);
         void setBreathSingle(int speed);
+        void setFlickerSingle();
+        void setBlinkSingle(int speed);
+        void setRandomBlinkSingle(int minTime, int maxTime);
+        void setOffSingle();
+        
     private:
     //private variables and fucntion
         //gobal variables
         int _pin;
         unsigned long milOld;
         int runningFunction = 0;
+        int lengthArrayp;
+        int speedp;
+        int timep;
 
         //variables for blinking
         bool ioBlink = false;
+        int rndTemp = 0;
 
         //variables for pattern
         int counter = 0;

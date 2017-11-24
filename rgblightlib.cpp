@@ -1,11 +1,6 @@
 #include "rgblightlib.h"
 #include "Arduino.h"
 
-
-//int pat[];
-int lengthArrayp;
-int speedp;
-
 llib::llib(int pin){
     //make sure to use pwm ports here
     pinMode(pin,OUTPUT);
@@ -25,7 +20,26 @@ void llib::update(){
         case 2:
             breathSingle(speedp);
         break;
+        case 3:
+            flickerSingle();
+        break;
+        case 4:
+            blinkSingle(speedp);
+        break;
+        case 5:
+            blinkRandomSingle(speedp,timep);
+        break;
     }
+}
+
+void llib::setOffSingle(){
+    runningFunction = 0;
+}
+
+void llib::setRandomBlinkSingle(int minTime, int maxTime){
+    runningFunction = 5;
+    speedp = minTime;
+    timep = maxTime;
 }
 
 void llib::setPatternSingle(int pattern[], int lengthArray){
@@ -37,6 +51,15 @@ void llib::setPatternSingle(int pattern[], int lengthArray){
 
 void llib::setBreathSingle(int speed){
     runningFunction = 2;
+    speedp = speed;
+}
+
+void llib::setFlickerSingle(){
+    runningFunction = 3;
+}
+
+void llib::setBlinkSingle(int speed){
+    runningFunction = 4;
     speedp = speed;
 }
 
@@ -133,4 +156,20 @@ void llib::blinkSingle(int timeHigh, int timeLow){
         }
     }
     
+}
+
+//blinking with randomised delay
+void llib::blinkRandomSingle(int minTime, int maxTime){
+    if((milOld + rndTemp) < millis()){
+        milOld = millis();
+        rndTemp = random(minTime, maxTime);
+        if(ioBlink == false){
+            digitalWrite(_pin,HIGH);
+            ioBlink = true;
+        }
+        else{
+            digitalWrite(_pin,LOW);
+            ioBlink = false;
+        }
+    }
 }

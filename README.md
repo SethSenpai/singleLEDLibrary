@@ -5,6 +5,8 @@ The functions in the library can be called in 2 ways. One way treats the functio
 ### Before you start
 Keep in mind that the blink functions will work on digital ports but everything else needs a PWM enabled port. (Look for the `~` symbol on your Arduino.)
 
+`objectName.update()` always needs to be called in the `void loop()` when you're using the *state change* method.
+
 ### State change example
 ```cpp
 //include the library in the program

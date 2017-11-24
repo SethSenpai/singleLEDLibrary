@@ -1,4 +1,4 @@
-llib	KEYWORD1
+sllib	KEYWORD1
 blinkSingle	KEYWORD2
 update	KEYWORD2
 breathSingle	KEYWORD2

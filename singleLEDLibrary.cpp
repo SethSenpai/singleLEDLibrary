@@ -1,7 +1,7 @@
 #include "rgblightlib.h"
 #include "Arduino.h"
 
-llib::llib(int pin){
+sllib::sllib(int pin){
     //make sure to use pwm ports here
     pinMode(pin,OUTPUT);
     digitalWrite(pin,LOW);
@@ -9,7 +9,7 @@ llib::llib(int pin){
     _pin = pin;
 }
 
-void llib::update(){
+void sllib::update(){
     switch(runningFunction){
         case 0:
         break;
@@ -31,18 +31,18 @@ void llib::update(){
     }
 }
 
-void llib::setOffSingle(){
+void sllib::setOffSingle(){
     runningFunction = 0;
     digitalWrite(_pin, LOW);
 }
 
-void llib::setRandomBlinkSingle(int minTime, int maxTime){
+void sllib::setRandomBlinkSingle(int minTime, int maxTime){
     runningFunction = 5;
     speedp = minTime;
     timep = maxTime;
 }
 
-void llib::setPatternSingle(int pattern[], int lengthArray){
+void sllib::setPatternSingle(int pattern[], int lengthArray){
     if (arrP != 0) {
     delete [] arrP;
     }
@@ -55,22 +55,22 @@ void llib::setPatternSingle(int pattern[], int lengthArray){
     runningFunction = 1;
 }
 
-void llib::setBreathSingle(int speed){
+void sllib::setBreathSingle(int speed){
     runningFunction = 2;
     speedp = speed;
 }
 
-void llib::setFlickerSingle(){
+void sllib::setFlickerSingle(){
     runningFunction = 3;
 }
   
-void llib::setBlinkSingle(int speed){
+void sllib::setBlinkSingle(int speed){
     runningFunction = 4;
     speedp = speed;
 }
 
 //function for pattern based blinking, first entry always turns the led high
-void llib::patternSingle(int pattern[], int lengthArray){
+void sllib::patternSingle(int pattern[], int lengthArray){
     if(counter < lengthArray) {    
         if((milOld + pattern[counter]) < millis() ){
             milOld = millis();
@@ -91,7 +91,7 @@ void llib::patternSingle(int pattern[], int lengthArray){
 
 
 // simple breating function
-void llib::breathSingle(int speed){
+void sllib::breathSingle(int speed){
     if((milOld + 1) < millis() ){
         milOld = millis();
         float it = 0;
@@ -101,7 +101,7 @@ void llib::breathSingle(int speed){
 }
 
 // simple flickering function
-void llib::flickerSingle(int intMin, int intMax){
+void sllib::flickerSingle(int intMin, int intMax){
     if((milOld + 100) < millis()){
         milOld = millis();
         float it = 0;
@@ -111,7 +111,7 @@ void llib::flickerSingle(int intMin, int intMax){
 }
 
 //overload for instant use
-void llib::flickerSingle(){
+void sllib::flickerSingle(){
     if((milOld + 100) < millis()){
         milOld = millis();
         float it = 0;
@@ -121,7 +121,7 @@ void llib::flickerSingle(){
 }
 
 //overload for speed controll
-void llib::flickerSingle(int intMin, int intMax, int speed){
+void sllib::flickerSingle(int intMin, int intMax, int speed){
     if((milOld + speed) < millis()){
         milOld = millis();
         float it = 0;
@@ -131,7 +131,7 @@ void llib::flickerSingle(int intMin, int intMax, int speed){
 }
 
 // simple blinking function
-void llib::blinkSingle(int speed){
+void sllib::blinkSingle(int speed){
     if ( (milOld + speed) < millis() ) {
         milOld = millis();
         if(ioBlink == false){
@@ -146,7 +146,7 @@ void llib::blinkSingle(int speed){
 }
 
 //overload to allow for async blinking
-void llib::blinkSingle(int timeHigh, int timeLow){
+void sllib::blinkSingle(int timeHigh, int timeLow){
     if(ioBlink == false){
         if( (milOld + timeHigh) < millis()){
             milOld = millis();
@@ -165,7 +165,7 @@ void llib::blinkSingle(int timeHigh, int timeLow){
 }
 
 //blinking with randomised delay
-void llib::blinkRandomSingle(int minTime, int maxTime){
+void sllib::blinkRandomSingle(int minTime, int maxTime){
     if((milOld + rndTemp) < millis()){
         milOld = millis();
         rndTemp = random(minTime, maxTime);

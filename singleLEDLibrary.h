@@ -1,5 +1,5 @@
-/*rgblightlib
-* A library for non interupting lighting effects
+/*singleLEDLibrary
+* A library for non interupting lighting effects for single LED's
 * Pim Ostendorf - 2017
 */
 
@@ -7,11 +7,11 @@
 #define rgblightlib_h
 #include "Arduino.h"
 
-class llib
+class sllib
 {
     public:
     //public variables and fucntions
-        llib(int pin);
+        sllib(int pin);
 
         //breathing
         void breathSingle(int speed);

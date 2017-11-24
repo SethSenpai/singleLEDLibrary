@@ -12,7 +12,7 @@ class llib
     public:
     //public variables and fucntions
         llib(int pin);
-        
+
         //breathing
         void breathSingle(int speed);
 
@@ -30,18 +30,20 @@ class llib
         
         //future update function
         void update();
+        void setPatternSingle(int pattern[], int lenghtarray);
+        void setBreathSingle(int speed);
     private:
     //private variables and fucntion
         //gobal variables
         int _pin;
         unsigned long milOld;
+        int runningFunction = 0;
 
         //variables for blinking
         bool ioBlink = false;
 
         //variables for pattern
         int counter = 0;
-        int odd = true;
 };
 
 #endif

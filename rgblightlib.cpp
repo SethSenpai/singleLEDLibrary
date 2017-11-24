@@ -2,6 +2,9 @@
 #include "Arduino.h"
 
 
+//int pat[];
+int lengthArrayp;
+int speedp;
 
 llib::llib(int pin){
     //make sure to use pwm ports here
@@ -9,29 +12,46 @@ llib::llib(int pin){
     digitalWrite(pin,LOW);
     Serial.begin(9600);
     _pin = pin;
+
 }
 
 void llib::update(){
-
+    switch(runningFunction){
+        case 0:
+        break;
+        case 1:
+            //patternSingle(pat,lengthArrayp);
+        break;
+        case 2:
+            breathSingle(speedp);
+        break;
+    }
 }
 
+void llib::setPatternSingle(int pattern[], int lengthArray){
+    runningFunction = 1;
+    //pat = pattern;
+    lengthArrayp = lengthArray;
+    //patternSingle(&pattern, &lengthArray);
+}
+
+void llib::setBreathSingle(int speed){
+    runningFunction = 2;
+    speedp = speed;
+}
 
 //function for pattern based blinking, first entry always turns the led high
 void llib::patternSingle(int pattern[], int lengthArray){
     if(counter < lengthArray) {    
         if((milOld + pattern[counter]) < millis() ){
             milOld = millis();
-            if(odd == true){
+            if(counter % 2 == 0){
                 digitalWrite(_pin, LOW);
-                odd = false;
             }
             else{
                 digitalWrite(_pin,HIGH);
-                odd = true;
             }
-            Serial.println(counter);
-            counter++;
-            
+            counter++;            
         }
         
     }

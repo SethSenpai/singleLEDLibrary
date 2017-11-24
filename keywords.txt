@@ -4,3 +4,10 @@ update	KEYWORD2
 breathSingle	KEYWORD2
 flickerSingle	KEYWORD2
 patternSingle	KEYWORD2
+blinkRandomSingle	KEYWORD2
+setPatternSingle	KEYWORD2
+setBreathSingle	KEYWORD2
+setFlickerSingle	KEYWORD2
+setBlinkSingle	KEYWORD2
+setRandomBlinkSingle	KEYWORD2
+setOffSingle	KEYWORD2

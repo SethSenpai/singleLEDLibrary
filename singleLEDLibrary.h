@@ -3,8 +3,8 @@
 * Pim Ostendorf - 2017
 */
 
-#ifndef rgblightlib_h
-#define rgblightlib_h
+#ifndef singleLEDLibrary_h
+#define singleLEDLibrary_h
 #include "Arduino.h"
 
 class sllib

@@ -1,4 +1,4 @@
-#include "rgblightlib.h"
+#include "singleLEDLibrary.h"
 #include "Arduino.h"
 
 sllib::sllib(int pin){

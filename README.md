@@ -4,6 +4,7 @@ The functions in the library can be called in 2 ways. One way treats the functio
 
 ### State change example
 ```cpp
+//include the library in the program
 #include <singleLEDLibrary.h>
 
 //declare your led objects that you will be using, light1 is connected to pin 9 and light 2 to pin 10
@@ -44,6 +45,7 @@ As you can see in the above example we're using the `set` functions so toggle th
 
 ## In loop example
 ```cpp
+//include the library in your program
 #include <singleLEDLibrary.h>
 
 //declare your led objects that you will be using, light1 is connected to pin 9 and light 2 to pin 10
@@ -70,3 +72,9 @@ void loop() {
 }
 ```
 This example shows the way the functions can be implemented *in loop*. We don't define the states of the LED's we just call the functions every time that tell the LED what to do in the next loop of the program.
+
+## Function Reference
+```cpp
+sllib nameoftheLED(int pinNumber);
+```
+Set up the light object that you will be using for the rest of the program.

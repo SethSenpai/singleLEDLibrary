@@ -79,4 +79,17 @@ This example shows the way the functions can be implemented *in loop*. We don't 
 ```cpp
 sllib nameoftheLED(int pinNumber);
 ```
-Set up the light object that you will be using for the rest of the program.
+Set up the light object that you will be using for the rest of the program. The `nameoftheLED` can be called anything.
+
+#### Breathing
+*in loop*
+```cpp
+breathSingle(int speed);
+```
+*state change*
+```cpp
+setBreathSingle(int speed);
+```
+A breathing animation for an LED. The speed is the time elapsed for 1 breath to be taken in milliseconds.
+
+#### Blinking

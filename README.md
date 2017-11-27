@@ -16,9 +16,6 @@ Keep in mind that the blink functions will work on digital ports but everything 
 sllib light1(9);
 sllib light2(10);
 
-bool onOrOff = false;
-bool pushdown = false;
-
 void setup() {
   //we make sure that our led's are doing something on startup
   light1.setBlinkSingle(500);
@@ -56,9 +53,6 @@ As you can see in the above example we're using the `set` functions so toggle th
 //declare your led objects that you will be using, light1 is connected to pin 9 and light 2 to pin 10
 sllib light1(9);
 sllib light2(10);
-
-bool onOrOff = false;
-bool pushdown = false;
 
 void setup() {
   //we have a button hooked up to pin 13

@@ -36,7 +36,7 @@ class sllib
         void setFlickerSingle();
         void setBlinkSingle(int speed);
         void setRandomBlinkSingle(int minTime, int maxTime);
-        void SetOnSingle();
+        void setOnSingle();
         void setOffSingle();
         
     private:

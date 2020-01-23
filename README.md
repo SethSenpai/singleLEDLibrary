@@ -87,6 +87,13 @@ update();
 ```
 Needed to update the LEDS when using the state change method. *This function needs to be put in the `void loop()`.
 
+#### Turn LED on
+*state change*
+```cpp
+setOnSingle();
+```
+Turns the LED on.
+
 #### Turn LED off
 *state change*
 ```cpp

@@ -30,6 +30,11 @@ void sllib::update(){
     }
 }
 
+void sllib::setOnSingle(){
+    runningFunction = 0;
+    digitalWrite(_pin, HIGH);
+}
+
 void sllib::setOffSingle(){
     runningFunction = 0;
     digitalWrite(_pin, LOW);
@@ -87,7 +92,6 @@ void sllib::patternSingle(int pattern[], int lengthArray){
         counter = 0;
     }
 }
-
 
 // simple breating function
 void sllib::breathSingle(int speed){

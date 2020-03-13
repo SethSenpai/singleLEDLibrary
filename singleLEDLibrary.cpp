@@ -50,8 +50,8 @@ void sllib::setPatternSingle(int pattern[], int lengthArray){
     if (arrP != 0) {
     delete [] arrP;
     }
-    arrP = new int [lengthArray];   
-    
+    arrP = new int [lengthArray];
+
     for(int i=0; i < lengthArray; i++){
         arrP[i] = pattern[i];
     }
@@ -67,7 +67,7 @@ void sllib::setBreathSingle(int speed){
 void sllib::setFlickerSingle(){
     runningFunction = 3;
 }
-  
+
 void sllib::setBlinkSingle(int speed){
     runningFunction = 4;
     speedp = speed;
@@ -75,7 +75,11 @@ void sllib::setBlinkSingle(int speed){
 
 //function for pattern based blinking, first entry always turns the led high
 void sllib::patternSingle(int pattern[], int lengthArray){
-    if(counter < lengthArray) {    
+    if(counter < lengthArray) {
+        if(milOld == 0){
+            milOld = millis();
+            digitalWrite(_pin,HIGH);
+        }
         if((milOld + pattern[counter]) < millis() ){
             milOld = millis();
             if(counter % 2 == 0){
@@ -84,9 +88,8 @@ void sllib::patternSingle(int pattern[], int lengthArray){
             else{
                 digitalWrite(_pin,HIGH);
             }
-            counter++;            
+            counter++;
         }
-        
     }
     else{
         counter = 0;
@@ -164,7 +167,6 @@ void sllib::blinkSingle(int timeHigh, int timeLow){
             ioBlink = false;
         }
     }
-    
 }
 
 //blinking with randomised delay

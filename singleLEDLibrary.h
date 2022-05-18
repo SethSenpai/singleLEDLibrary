@@ -58,4 +58,6 @@ class sllib
         int counter = 0;
 };
 
+typedef sllib SingleLED;
+
 #endif

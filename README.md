@@ -80,6 +80,11 @@ sllib nameoftheLED(int pinNumber);
 ```
 Set up the light object that you will be using for the rest of the program. The `nameoftheLED` can be called anything.
 
+It's also possible to use the alias `SingleLED`, as follows:
+```cpp
+SingleLED nameoftheLED(int pinNumber);
+```
+
 #### Update
 *state change **only***
 ```cpp

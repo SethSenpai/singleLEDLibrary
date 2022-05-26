@@ -1,6 +1,13 @@
 #include "singleLEDLibrary.h"
 #include "Arduino.h"
 
+#define P_NONE       0
+#define P_SINGLE     1
+#define P_BREATHE    2
+#define P_FLICKER    3
+#define P_BLINK      4
+#define P_BLINK_RAND 5
+
 sllib::sllib(int pin){
     //make sure to use pwm ports here
     pinMode(pin,OUTPUT);
@@ -10,38 +17,38 @@ sllib::sllib(int pin){
 
 void sllib::update(){
     switch(runningFunction){
-        case 0:
+        case P_NONE:
         break;
-        case 1:
+        case P_SINGLE:
             patternSingle(arrP,speedp);
         break;
-        case 2:
+        case P_BREATHE:
             breathSingle(speedp);
         break;
-        case 3:
+        case P_FLICKER:
             flickerSingle();
         break;
-        case 4:
+        case P_BLINK:
             blinkSingle(speedp);
         break;
-        case 5:
+        case P_BLINK_RAND:
             blinkRandomSingle(speedp,timep);
         break;
     }
 }
 
 void sllib::setOnSingle(){
-    runningFunction = 0;
+    runningFunction = P_NONE;
     digitalWrite(_pin, HIGH);
 }
 
 void sllib::setOffSingle(){
-    runningFunction = 0;
+    runningFunction = P_NONE;
     digitalWrite(_pin, LOW);
 }
 
 void sllib::setRandomBlinkSingle(int minTime, int maxTime){
-    runningFunction = 5;
+    runningFunction = P_BLINK_RAND;
     speedp = minTime;
     timep = maxTime;
 }
@@ -56,20 +63,20 @@ void sllib::setPatternSingle(int pattern[], int lengthArray){
         arrP[i] = pattern[i];
     }
     speedp = lengthArray;
-    runningFunction = 1;
+    runningFunction = P_SINGLE;
 }
 
 void sllib::setBreathSingle(int speed){
-    runningFunction = 2;
+    runningFunction = P_BREATHE;
     speedp = speed;
 }
 
 void sllib::setFlickerSingle(){
-    runningFunction = 3;
+    runningFunction = P_FLICKER;
 }
 
 void sllib::setBlinkSingle(int speed){
-    runningFunction = 4;
+    runningFunction = P_BLINK;
     speedp = speed;
 }
 

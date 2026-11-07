@@ -42,7 +42,14 @@ void sllib::setOnSingle(){
     digitalWrite(_pin, HIGH);
 }
 
-void sllib::setOffSingle(){
+void sllib::setOffSingle() {
+
+    // release PWM control if breathing or flickering was active
+    if (runningFunction == P_BREATHE || runningFunction == P_FLICKER) {
+        ledcDetachPin(_pin);
+        pinMode(_pin, OUTPUT);
+    }
+
     runningFunction = P_NONE;
     digitalWrite(_pin, LOW);
 }
